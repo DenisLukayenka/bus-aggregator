@@ -3,6 +3,7 @@ Param(
     [parameter(Mandatory=$false)][string]$appName="dav08649",
     [parameter(Mandatory=$false)][bool]$deployCharts=$true,
     [parameter(Mandatory=$false)][bool]$deployGateways=$true,
+    [parameter(Mandatory=$false)][bool]$deployData=$true,
     [parameter(Mandatory=$false)][bool]$clean=$true,
     [parameter(Mandatory=$false)][string]$aksName="",
     [parameter(Mandatory=$false)][string]$aksRg="",
@@ -67,8 +68,16 @@ if ($clean) {
 
 Write-Host "Begin BusAggregator installation using Helm" -ForegroundColor Green
 
+$data = ("catalogsqldb")
 $gateways = ("adapterapigw", "catalogapigw")
 $charts = ("catalog-api", "adapter-api", "webstatus", "webspa")
+
+if ($deployData) {
+    foreach ($dataItem in $data) {
+        Write-Host "Installing data: $dataItem" -ForegroundColor Green
+        helm install "$appName-$dataItem" --values app.yaml --values $ingressValuesFile --set app.name=$appName --set "ingress.hosts={$dns}" $dataItem
+    }
+}
 
 if ($deployCharts) {
     foreach ($chart in $charts) {

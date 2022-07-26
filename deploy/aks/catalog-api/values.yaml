@@ -17,6 +17,9 @@ env:
       value: Development
     - name: PORT
       value: "80"
+  configmap:
+    - name: ConnectionStrings__Default
+      key: internalurls__sql__server
 probes:
   liveness:
     path: /liveness

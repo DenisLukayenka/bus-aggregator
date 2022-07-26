@@ -10,3 +10,4 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 data:
+  internalurls__sql__server: Server={{ .Values.app.svc.catalogsqldb }};Database=busagg;User Id=sa;Password=Pass@word

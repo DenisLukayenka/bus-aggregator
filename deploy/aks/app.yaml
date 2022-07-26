@@ -8,6 +8,7 @@ app:
       spa: webspa
       catalogapigw: catalogapigw
       adapterapigw: adapterapigw
+      catalogsqldb: catalogsqldb
   svc:
       catalog: catalog-api
       adapter: adapter-api
@@ -15,3 +16,4 @@ app:
       spa: webspa
       catalogapigw: catalogapigw
       adapterapigw: adapterapigw
+      catalogsqldb: catalogsqldb
