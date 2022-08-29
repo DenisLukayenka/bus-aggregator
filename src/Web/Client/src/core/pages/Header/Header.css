@@ -1,0 +1,25 @@
+.main-header {
+    padding: 20px 0;
+    height: 100px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-header-left {
+    align-items: center;
+}
+
+.company-name {
+    font-size: 24px;
+    color: #2b0108;
+    font-weight: 600;
+    font-style: italic;
+    white-space: nowrap;
+
+    margin-left: 50px;
+}
+
+.contact-item {
+    font-size: 18px;
+    margin: 3px 0;
+}

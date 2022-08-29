@@ -5,7 +5,6 @@ WORKDIR /webbuild/src
 COPY Web/Client/package.json .
 COPY Web/Client/yarn.lock .
 
-# RUN npm install -g yarn@1.22
 RUN yarn install
 
 COPY Web/Client .

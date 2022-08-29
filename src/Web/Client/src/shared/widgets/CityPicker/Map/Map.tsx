@@ -6,8 +6,8 @@ import { useSelectedCities } from '@shared/hooks/useSelectedCities';
 
 type MapProps = {
     styles: {
-        height: number,
-        width: number,
+        height: number | string,
+        width: number | string,
     }
 }
 
