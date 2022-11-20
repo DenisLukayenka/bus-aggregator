@@ -20,9 +20,7 @@
 .city-caption {
     fill: rgb(51, 51, 51);
     font-family: 'Arial, sans-serif';
-    font-size: 145px;
     letter-spacing: 1px;
-    white-space: 'pre';
     filter: 'url(#drop-shadow-filter-0)';
 
     transition: 0.3s;
@@ -47,15 +45,10 @@
 
 /* Selected styles */
 
-.city-group.selected .city-indicator {
-    rx: 0px;
-    ry: 0px;
-}
-
 .city-group.selected .city-caption {
     fill: rgb(60, 54, 54);
 
-    font-size: 160px;
+    font-size: 28px;
     font-weight: bold;
     letter-spacing: 1.1;
 }
@@ -66,13 +59,8 @@
     fill: rgb(233, 183, 83);
     stroke-width: 0px;
 
-    rx: 0px;
-    ry: 0px;
-}
-
-.indicator-overlay.visible {
-    rx: 10px;
-    ry: 10px;
+    /* rx: 0px;
+    ry: 0px; */
 }
 
 /* End selected styles */
