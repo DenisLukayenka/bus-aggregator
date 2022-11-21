@@ -35,7 +35,6 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
-wwwroot/
 
 **/node_modules/
 **/dist/

@@ -61,8 +61,8 @@ export const Map = ({ styles }: MapProps) => {
 
     return (
         <svg height={styles.height} width={styles.width} viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-            {MapData.pathes.map((v, i) => (
-                <path key={i} style={v.style as any} className='country-border' d={v.path}></path>
+            {MapData.paths.map((v, i) => (
+                <path key={i} style={v.style as any} className='country-border' d={v.value}></path>
             ))}
 
             {MapData.cities.map(v => (

@@ -23,7 +23,7 @@ export type City = {
 }
 
 export type Path = {
-    path: string;
+    value: string;
     style?: string;
 }
 
@@ -32,7 +32,7 @@ export interface Map {
     caption: string;
     description?: string;
 
-    pathes: Path[];
+    paths: Path[];
     cities: City[];
 }
 

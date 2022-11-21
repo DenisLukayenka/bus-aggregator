@@ -16,12 +16,6 @@ public class HomeController : ControllerBase
         this._connectionString = configuration.GetConnectionString("Default");
     }
 
-    [Route("/data")]
-    public string GetData()
-    {
-        return "Hello from Data Controller!";
-    }
-
     [Route("/connection")]
     public string GetConnection()
     {
