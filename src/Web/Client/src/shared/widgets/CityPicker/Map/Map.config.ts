@@ -11,10 +11,9 @@ export const MapData: Map = {
     ],
     cities: [
         {
-            caption: 'Hrodna',
-    
             text: {
-                position: 'right'
+                caption: 'Hrodna',
+                align: 'right'
             },
             indicator: {
                 position: {
@@ -23,10 +22,9 @@ export const MapData: Map = {
                 }
             },
         }, {
-            caption: 'Brest',
-    
             text: {
-                position: 'right'
+                caption: 'Brest',
+                align: 'right'
             },
             indicator: {
                 position: {
@@ -35,9 +33,9 @@ export const MapData: Map = {
                 }
             },
         }, {
-            caption: 'Gomel',
             text: {
-                position: 'top'
+                caption: 'Gomel',
+                align: 'top'
             },
     
             indicator: {
@@ -47,9 +45,9 @@ export const MapData: Map = {
                 }
             },
         }, {
-            caption: 'Mogilev',
             text: {
-                position: 'bottom'
+                caption: 'Mogilev',
+                align: 'bottom'
             },
     
             indicator: {
@@ -59,10 +57,9 @@ export const MapData: Map = {
                 }
             },
         }, {
-            caption: 'Vitebsk',
-    
             text: {
-                position: 'bottom'
+                caption: 'Vitebsk',
+                align: 'bottom'
             },
     
             indicator: {
@@ -72,10 +69,9 @@ export const MapData: Map = {
                 }
             },
         }, {
-            caption: 'Minsk',
-    
             text: {
-                position: 'bottom'
+                caption: 'Minsk',
+                align: 'bottom'
             },
     
             indicator: {

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Hosting;
+using WebSPA.Services;
 
 namespace WebSPA
 {
@@ -21,6 +22,7 @@ namespace WebSPA
 
             services.AddResponseCompression();
             services.AddControllers();
+            services.AddSingleton<MapService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

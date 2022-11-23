@@ -4,7 +4,6 @@ import './Map.css';
 import { MapData } from './Map.config';
 import { useSelectedCities } from '@shared/hooks/useSelectedCities';
 import { DEFAULT_INDICATOR_SIZE, DEFAULT_TEXT_SIZE, Indicator, Position, Text } from '@shared/infastructure/models/backend/Map';
-import { instanceOfPosition } from '@shared/infastructure/utilities/instanceOfPosition';
 
 type MapProps = {
     styles: {
@@ -29,7 +28,7 @@ export const Map = ({ styles }: MapProps) => {
         `indicator-overlay ${isCitySelected(id) ? 'visible' : ''}`;
 
     const getCaptionPosition = (indicator: Indicator, text: Text) => {
-        if (instanceOfPosition(text.position)) {
+        if (!!text.position) {
             return { x: text.position.x, y: text.position.y };
         }
 
@@ -37,7 +36,7 @@ export const Map = ({ styles }: MapProps) => {
         const textSize = text.size || DEFAULT_TEXT_SIZE;
         const position = indicator.position;
 
-        switch(text.position) {
+        switch(text.align) {
             case 'top':
                 return { x: position.x - indicatorSize, y: position.y - indicatorSize / 2 - textSize / 2 };
             case 'bottom':
@@ -66,9 +65,9 @@ export const Map = ({ styles }: MapProps) => {
             ))}
 
             {MapData.cities.map(v => (
-                <g id={v.caption} key={v.caption} className={getCityGroupClass(v.caption)} onClick={() => onCityClick(v.caption)}>
+                <g id={v.text.caption} key={v.text.caption} className={getCityGroupClass(v.text.caption)} onClick={() => onCityClick(v.text.caption)}>
                     <ellipse
-                        className={getIndicatorOverlayClass(v.caption)}
+                        className={getIndicatorOverlayClass(v.text.caption)}
                         cx={v.indicator.position.x}
                         cy={v.indicator.position.y}
                         {...getIndicatorRadiusData(v.indicator)}
@@ -84,7 +83,7 @@ export const Map = ({ styles }: MapProps) => {
                         className='city-caption'
                         style={{fontSize: getTextSize(v.text)}}
                         {...getCaptionPosition(v.indicator, v.text)}
-                    >{v.caption}</text>
+                    >{v.text.caption}</text>
                 </g>
             ))}
         </svg>

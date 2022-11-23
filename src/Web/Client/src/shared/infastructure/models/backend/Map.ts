@@ -2,7 +2,6 @@ export type Position = {
     x: number;
     y: number;
 }
-export type CaptionPosition = 'top' | 'bottom' | 'right'; // Cannot use 'left' because we don't know the actual length of caption
 
 export type Indicator = {
     position: Position;
@@ -10,14 +9,14 @@ export type Indicator = {
     size?: number;
 }
 export type Text = {
+    caption: string;
     style?: string;
-    position: CaptionPosition | Position;
+    position?: Position;
+    align?: 'top' | 'bottom' | 'right'; // Cannot use 'left' because we don't know the actual length of caption
     size?: number;
 }
 
 export type City = {
-    caption: string;
-
     text: Text;
     indicator: Indicator;
 }

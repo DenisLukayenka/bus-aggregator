@@ -1,6 +1,7 @@
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using WebSPA.Services;
 
 namespace WebSPA.Controllers
 {
@@ -9,10 +10,12 @@ namespace WebSPA.Controllers
     public class MapController : ControllerBase
     {
         private readonly IWebHostEnvironment _environment;
+        private readonly MapService _mapService;
  
-        public MapController(IWebHostEnvironment _environment)
+        public MapController(IWebHostEnvironment _environment, MapService mapService)
         {
             this._environment = _environment;
+            this._mapService = mapService;
         }
 
         [HttpGet("getvalue")]
@@ -29,6 +32,12 @@ namespace WebSPA.Controllers
             byte[] buffer = System.IO.File.ReadAllBytes(path);
 
             return File(buffer, "application/xml", fileName);
+        }
+
+        [HttpGet("getMapObject/{id}")]
+        public IActionResult GetMapObject(string id)
+        {
+            return Ok(this._mapService.GetOrAdd(id));
         }
     }
 }
