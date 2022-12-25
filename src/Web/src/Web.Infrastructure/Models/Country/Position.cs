@@ -1,4 +1,4 @@
-namespace Web.SPA.ViewModels.Map
+namespace Web.Infrastructure.Models.Country
 {
     public class Position
     {

@@ -4,11 +4,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
 using Microsoft.AspNetCore.Hosting;
+using Web.Infrastructure.Models.Country;
 
-namespace Web.SPA.Services
+namespace Web.SPA.Providers
 {
-    using Web.SPA.ViewModels.Map;
-
     public class MapService
     {
         private readonly IWebHostEnvironment _environment;
@@ -20,28 +19,26 @@ namespace Web.SPA.Services
             this._mapCache = new ConcurrentDictionary<string, Map>();
         }
 
-        public Map GetOrAdd(string id)
+        public Map GetOrAdd(string filePath)
         {
-            if (this._mapCache.ContainsKey(id))
+            if (this._mapCache.ContainsKey(filePath))
             {
-                return this._mapCache[id];
+                return this._mapCache[filePath];
             }
 
-            var map = this._mapCache.GetOrAdd(id, (id) => BuildMapFromFile(id));
+            var map = this._mapCache.GetOrAdd(filePath, (filePath) => BuildMapFromFile(filePath));
 
             return map;
         }
 
-        private Map BuildMapFromFile(string id)
+        private static Map BuildMapFromFile(string filePath)
         {
-            var fileName = Path.ChangeExtension(id.ToLowerInvariant(), "xml");
-            var path = Path.Combine(this._environment.WebRootPath, "maps", fileName);
-
-            var document = XDocument.Load(path);
+            var document = XDocument.Load(filePath);
             var root = document.Root;
 
             var map = new Map();
-            map.Id = Convert.ToInt32(root!.Element("id")!.Value);
+
+            map.Id = int.Parse(root!.Element("id")!.Value);
             map.Caption = root.Element("caption")!.Value;
             map.Description = root.Element("description")?.Value;
             map.Paths = new List<MapPath>();
@@ -61,7 +58,7 @@ namespace Web.SPA.Services
 
             foreach (var c in citiesNode!.Elements("city"))
             {
-                var cityId = Convert.ToInt32(c.Element("id"));
+                var cityId = int.Parse(c.Element("id").Value);
                 var indicatorNode = c.Element("indicator");
                 var textNode = c.Element("text");
                 var textSizeNode = textNode!.Element("size");
@@ -74,7 +71,7 @@ namespace Web.SPA.Services
                 {
                     Aligh = textNode.Element("align")?.Value,
                     Caption = textNode.Element("caption")!.Value,
-                    Size = textSizeNode?.Value != null ? Convert.ToInt32(textSizeNode.Value) : null,
+                    Size = textSizeNode?.Value != null ? int.Parse(textSizeNode.Value) : null,
                     Style = textNode.Element("style")?.Value,
                 };
 
@@ -82,8 +79,8 @@ namespace Web.SPA.Services
                 {
                     cityText.Position = new Position
                     {
-                        X = Convert.ToInt32(textPositionNode.Element("x")!.Value),
-                        Y = Convert.ToInt32(textPositionNode.Element("y")!.Value),
+                        X = int.Parse(textPositionNode.Element("x")!.Value),
+                        Y = int.Parse(textPositionNode.Element("y")!.Value),
                     };
                 }
 
@@ -95,10 +92,10 @@ namespace Web.SPA.Services
                         Style = indicatorNode.Element("style")?.Value,
                         Position = new Position
                         {
-                            X = Convert.ToInt32(indicatorPositionNode!.Element("x")!.Value),
-                            Y = Convert.ToInt32(indicatorPositionNode!.Element("y")!.Value),
+                            X = int.Parse(indicatorPositionNode!.Element("x")!.Value),
+                            Y = int.Parse(indicatorPositionNode!.Element("y")!.Value),
                         },
-                        Size = indicatorSizeNode?.Value != null ? Convert.ToInt32(indicatorSizeNode.Value) : null,
+                        Size = indicatorSizeNode?.Value != null ? int.Parse(indicatorSizeNode.Value) : null,
                     },
                     Text = cityText
                 });

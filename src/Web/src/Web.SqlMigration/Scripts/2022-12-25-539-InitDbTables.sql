@@ -13,6 +13,7 @@ BEGIN
     CREATE TABLE tbl_Cities
     (
         Id INT IDENTITY(1, 1) PRIMARY KEY,
+        CountryId INT FOREIGN KEY REFERENCES tbl_Countries(Id),
         Caption varchar(20) NOT NULL,
     )
 END
@@ -56,12 +57,12 @@ BEGIN
     CREATE TABLE tbl_Rides
     (
         Id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
-        StartCityId INT FOREIGN KEY REFERENCES Cities(Id),
-        FinishCityId INT FOREIGN KEY REFERENCES Cities(Id),
+        StartCityId INT FOREIGN KEY REFERENCES tbl_Cities(Id),
+        FinishCityId INT FOREIGN KEY REFERENCES tbl_Cities(Id),
         StartDate DATETIME NOT NULL,
         FinishDate DATETIME NULL,
-        DriverId INT FOREIGN KEY REFERENCES Drivers(Id),
-        TransportId INT FOREIGN KEY REFERENCES Transports(Id),
+        DriverId INT FOREIGN KEY REFERENCES tbl_Drivers(Id),
+        TransportId INT FOREIGN KEY REFERENCES tbl_Transports(Id),
     )
 END
 
@@ -69,8 +70,8 @@ IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'tbl_
 BEGIN
     CREATE TABLE tbl_PassengerRides
     (
-        PassengerId UNIQUEIDENTIFIER FOREIGN KEY REFERENCES Passengers(Id),
-        RideId UNIQUEIDENTIFIER FOREIGN KEY REFERENCES Rides(Id),
+        PassengerId UNIQUEIDENTIFIER FOREIGN KEY REFERENCES tbl_Passengers(Id),
+        RideId UNIQUEIDENTIFIER FOREIGN KEY REFERENCES tbl_Rides(Id),
 
         CONSTRAINT Pk_Passenger_Ride PRIMARY KEY (PassengerId, RideId)
     )

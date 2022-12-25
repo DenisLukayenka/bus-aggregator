@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Web.SPA.ViewModels.Map
+namespace Web.Infrastructure.Models.Country
 {
     public class Map
     {

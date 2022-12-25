@@ -22,6 +22,7 @@ BEGIN
     CREATE PROCEDURE [dbo].[SP_City_Insert]
     (
         @Id INT NOT NULL,
+        @CountryId INT NOT NULL,
         @Caption varchar(20) NOT NULL
     )
     AS
@@ -29,6 +30,7 @@ BEGIN
     VALUES
     (
         @Id,
+        @CountryId,
         @Caption
     )
     GO;

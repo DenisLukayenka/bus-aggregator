@@ -10,10 +10,17 @@ using Microsoft.Extensions.Hosting;
 namespace Web.SPA
 {
     using Web.SPA.Extensions;
-    using Web.SPA.Services;
+    using Web.SPA.Providers;
 
     public class Startup
     {
+        public Startup(IWebHostEnvironment env)
+        {
+            CurrentEnvironment = env;
+        }
+
+        private IWebHostEnvironment CurrentEnvironment { get; set; }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHealthChecks().AddCheck("self", () => HealthCheckResult.Healthy());
@@ -25,6 +32,7 @@ namespace Web.SPA
             services.AddResponseCompression();
             services.AddControllers();
             services.AddSingleton<MapService>();
+            services.AddAppConfiguration(CurrentEnvironment);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

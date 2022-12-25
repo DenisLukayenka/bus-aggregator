@@ -1,7 +1,7 @@
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Web.SPA.Services;
+using Web.SPA.Providers;
 
 namespace Web.SPA.Controllers
 {
