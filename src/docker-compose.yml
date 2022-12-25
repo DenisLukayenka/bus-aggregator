@@ -4,43 +4,43 @@ services:
   catalogsqldb:
     image: mcr.microsoft.com/mssql/server:2022-latest
 
-  catalogapigw:
-    image: ${REGISTRY:-dav08649}/catalogapigw:${PLATFORM:-linux}-${TAG:-latest}
-    build:
-      context: .
-      dockerfile: ApiGateways/Gateway.BaseApi/Dockerfile
+  # catalogapigw:
+  #   image: ${REGISTRY:-dav08649}/catalogapigw:${PLATFORM:-linux}-${TAG:-latest}
+  #   build:
+  #     context: .
+  #     dockerfile: ApiGateways/Gateway.BaseApi/Dockerfile
   
-  adapterapigw:
-    image: ${REGISTRY:-dav08649}/adapterapigw:${PLATFORM:-linux}-${TAG:-latest}
-    build:
-      context: .
-      dockerfile: ApiGateways/Gateway.BaseApi/Dockerfile
+  # adapterapigw:
+  #   image: ${REGISTRY:-dav08649}/adapterapigw:${PLATFORM:-linux}-${TAG:-latest}
+  #   build:
+  #     context: .
+  #     dockerfile: ApiGateways/Gateway.BaseApi/Dockerfile
 
-  webstatus:
-    image: ${REGISTRY:-dav08649}/webstatus:${PLATFORM:-linux}-${TAG:-latest}
-    build:
-      context: .
-      dockerfile: WebStatus/Dockerfile
+  # webstatus:
+  #   image: ${REGISTRY:-dav08649}/webstatus:${PLATFORM:-linux}-${TAG:-latest}
+  #   build:
+  #     context: .
+  #     dockerfile: WebStatus/Dockerfile
 
   webspa:
     image: ${REGISTRY:-dav08649}/webspa:${PLATFORM:-linux}-${TAG:-latest}
     build:
       context: .
-      dockerfile: Web/Dockerfile
-    depends_on:
-      - catalog-api
-      - adapter-api
+      dockerfile: Web/src/Dockerfile
+    # depends_on:
+    #   - catalog-api
+    #   - adapter-api
 
-  catalog-api:
-    image: ${REGISTRY:-dav08649}/catalog.api:${PLATFORM:-linux}-${TAG:-latest}
-    build:
-      context: .
-      dockerfile: Services/Catalog/Catalog.API/Dockerfile
-    depends_on:
-      - catalogsqldb
+  # catalog-api:
+  #   image: ${REGISTRY:-dav08649}/catalog.api:${PLATFORM:-linux}-${TAG:-latest}
+  #   build:
+  #     context: .
+  #     dockerfile: Services/Catalog/Catalog.API/Dockerfile
+  #   depends_on:
+  #     - catalogsqldb
 
-  adapter-api:
-    image: ${REGISTRY:-dav08649}/adapter.api:${PLATFORM:-linux}-${TAG:-latest}
-    build:
-      context: .
-      dockerfile: Services/Adapter/Adapter.API/Dockerfile
+  # adapter-api:
+  #   image: ${REGISTRY:-dav08649}/adapter.api:${PLATFORM:-linux}-${TAG:-latest}
+  #   build:
+  #     context: .
+  #     dockerfile: Services/Adapter/Adapter.API/Dockerfile

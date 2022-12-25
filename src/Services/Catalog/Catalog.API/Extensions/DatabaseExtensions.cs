@@ -20,6 +20,7 @@ public static class DatabaseExtensions
             var upgrader = DeployChanges.To
                 .SqlDatabase(connectionString)
                 .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly())
+                .WithTransactionAlwaysRollback()
                 .LogToConsole()
                 .Build();
 
