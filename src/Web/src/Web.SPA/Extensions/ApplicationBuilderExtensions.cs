@@ -27,7 +27,7 @@ namespace Web.SPA.Extensions
 
             var webFileProvider = new PhysicalFileProvider(config.WebRootPath);
             var configsFileProvider = new PhysicalFileProvider(config.ConfigsFullPath);
-            var localesFileProvider = new PhysicalFileProvider(config.LocalesFullPath);
+            var localesFileProvider = new PhysicalFileProvider(config.LocalesFolderFullPath);
 
             app.UseStaticFiles();
             app.UseStaticFiles(new StaticFileOptions()

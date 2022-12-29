@@ -1,4 +1,4 @@
-<country>
+<map xmlns="http://schemas.datacontract.org/2004/07/Web.Infrastructure.Models.MapInfo">
   <id>1</id>
   <caption>belarus</caption>
   <description>Super</description>
@@ -88,4 +88,4 @@
       </indicator>
     </city>
   </cities>
-</country>
+</map>

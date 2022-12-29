@@ -1,21 +1,20 @@
-﻿using Web.Infrastructure.Models.Country;
+﻿using Web.Infrastructure.Models.MapInfo;
 
 namespace Web.Infrastructure.Configuration;
 
 public class AppConfiguration
 {
     public const string CONFIGURATION_PROJECT_NAME = "Web.Configuration";
-    public const string MAPS_PATH = "maps";
-    public const string LOCALES_PATH = "locales";
+    public const string MAPS_FOLDER_PATH = "maps";
+    public const string LOCALES_FOLDER_PATH = "locales";
 
     public string WebRootPath { get; set; }
     public string EnvironmentName { get; set; }
     public string ApplicationName { get; set; }
     public string ContentRootPath { get; set; }
 
-    public string CurrentMapSelector { get; set; }
-    public Map CurrentMap { get; set; }
-    public ICollection<Map> Maps { get; set; }
+    public string MapSelector { get; set; }
+    public Map MapInfo { get; set; }
 
     public string ConfigsFullPath
     {
@@ -34,6 +33,6 @@ public class AppConfiguration
         }
     }
 
-    public string MapsFullPath => Path.Combine(ConfigsFullPath, MAPS_PATH);
-    public string LocalesFullPath => Path.Combine(ConfigsFullPath, LOCALES_PATH);
+    public string MapsFolderFullPath => Path.Combine(ConfigsFullPath, MAPS_FOLDER_PATH);
+    public string LocalesFolderFullPath => Path.Combine(ConfigsFullPath, LOCALES_FOLDER_PATH);
 }

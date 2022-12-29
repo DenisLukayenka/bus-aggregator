@@ -10,7 +10,6 @@ using Microsoft.Extensions.Hosting;
 namespace Web.SPA
 {
     using Web.SPA.Extensions;
-    using Web.SPA.Providers;
 
     public class Startup
     {
@@ -31,7 +30,6 @@ namespace Web.SPA
 
             services.AddResponseCompression();
             services.AddControllers();
-            services.AddSingleton<MapService>();
             services.AddAppConfiguration(CurrentEnvironment);
         }
 

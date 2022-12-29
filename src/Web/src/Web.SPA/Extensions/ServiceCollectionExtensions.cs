@@ -1,12 +1,12 @@
-using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Xml.Serialization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Web.Infrastructure.Configuration;
 using Web.Infrastructure.Exceptions;
-using Web.Infrastructure.Models.Country;
-using Web.SPA.Providers;
+using Web.Infrastructure.Models.MapInfo;
 
 namespace Web.SPA.Extensions;
 
@@ -36,10 +36,10 @@ public static class ServiceCollectionExtensions
                     ContentRootPath = env.ContentRootPath,
                     EnvironmentName = env.EnvironmentName,
                     WebRootPath = env.WebRootPath,
-                    CurrentMapSelector = currentCountry,
+                    MapSelector = currentCountry,
                 };
 
-                LoadMaps(config, servicesProvider.GetRequiredService<MapService>());
+                LoadMap(config);
                 LoadLocales(config);
 
                 return config;
@@ -47,22 +47,27 @@ public static class ServiceCollectionExtensions
         });
     }
 
-    private static void LoadMaps(AppConfiguration config, MapService mapProvider)
+    private static void LoadMap(AppConfiguration config)
     {
-        var maps = new List<Map>();
+        var targetMap = Directory
+            .EnumerateFiles(config.MapsFolderFullPath)
+            .FirstOrDefault(f => Path.GetFileNameWithoutExtension(f) == config.MapSelector);
 
-        foreach (var file in Directory.EnumerateFiles(config.MapsFullPath))
+        if (targetMap is null)
         {
-            if (file is null || !File.Exists(file))
-                continue;
+            throw new ConfigurationException("Cannot find map configuration file with name: " + config.MapSelector);
+        }
 
-            var buildedMap = mapProvider.GetOrAdd(file);
-            maps.Add(buildedMap);
+        var serializer = new XmlSerializer(typeof(Map), "http://schemas.datacontract.org/2004/07/Web.Infrastructure.Models.MapInfo");
 
-            if (Path.GetFileNameWithoutExtension(file) == config.CurrentMapSelector)
+        using (var fs = File.Open(targetMap, FileMode.Open))
+        {
+            if (serializer.Deserialize(fs) is not Map map)
             {
-                config.CurrentMap = buildedMap;
+                throw new ConfigurationException("Cannot deserialize map file from: " + targetMap);
             }
+
+            config.MapInfo = map;
         }
     }
 

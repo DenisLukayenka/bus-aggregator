@@ -1,21 +1,18 @@
-using System.IO;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Web.SPA.Providers;
 
 namespace Web.SPA.Controllers
 {
+    using Web.Infrastructure.Configuration;
+
     [ApiController]
     [Route("[controller]")]
     public class MapController : ControllerBase
     {
-        private readonly IWebHostEnvironment _environment;
-        private readonly MapService _mapService;
- 
-        public MapController(IWebHostEnvironment _environment, MapService mapService)
+        private readonly AppConfiguration _config;
+
+        public MapController(AppConfiguration config)
         {
-            this._environment = _environment;
-            this._mapService = mapService;
+            this._config = config;
         }
 
         [HttpGet("getvalue")]
@@ -24,20 +21,10 @@ namespace Web.SPA.Controllers
             return "stupied value";
         }
 
-        [HttpGet("map")]
-        public FileResult GetMap()
+        [HttpGet("getMapObject")]
+        public IActionResult GetMapObject()
         {
-            // string path = Path.Combine(this._environment. WebRootPath, "maps", fileName);
-            // byte[] buffer = System.IO.File.ReadAllBytes(path);
-
-            // return File(buffer, "application/xml", fileName);
-            return null;
-        }
-
-        [HttpGet("getMapObject/{id}")]
-        public IActionResult GetMapObject(string id)
-        {
-            return Ok(this._mapService.GetOrAdd(id));
+            return Ok(this._config.MapInfo);
         }
     }
 }
