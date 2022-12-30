@@ -16,6 +16,8 @@ public class AppConfiguration
     public string MapSelector { get; set; }
     public Map MapInfo { get; set; }
 
+    public string ConnectionString { get; set; }
+
     public string ConfigsFullPath
     {
         get

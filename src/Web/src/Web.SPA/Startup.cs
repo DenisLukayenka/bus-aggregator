@@ -31,6 +31,7 @@ namespace Web.SPA
             services.AddResponseCompression();
             services.AddControllers();
             services.AddAppConfiguration(CurrentEnvironment);
+            services.AddRepositories();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

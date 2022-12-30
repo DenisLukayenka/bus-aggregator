@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Infrastructure", "Web.I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.SqlMigration", "Web.SqlMigration\Web.SqlMigration.csproj", "{793B1066-5B95-45B5-8A07-92644822FE0B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.SqlRepository", "Web.SqlRepository\Web.SqlRepository.csproj", "{4A536FE5-F921-4069-9844-E42252C258EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{793B1066-5B95-45B5-8A07-92644822FE0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{793B1066-5B95-45B5-8A07-92644822FE0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{793B1066-5B95-45B5-8A07-92644822FE0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A536FE5-F921-4069-9844-E42252C258EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A536FE5-F921-4069-9844-E42252C258EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A536FE5-F921-4069-9844-E42252C258EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A536FE5-F921-4069-9844-E42252C258EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

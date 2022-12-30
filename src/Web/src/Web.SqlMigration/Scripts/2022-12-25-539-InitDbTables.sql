@@ -1,6 +1,6 @@
-IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'tbl_Countries')
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'tbl_Maps')
 BEGIN
-    CREATE TABLE tbl_Countries
+    CREATE TABLE tbl_Maps
     (
         Id INT IDENTITY(1, 1) PRIMARY KEY,
         Caption varchar(20) NOT NULL,
@@ -13,7 +13,7 @@ BEGIN
     CREATE TABLE tbl_Cities
     (
         Id INT IDENTITY(1, 1) PRIMARY KEY,
-        CountryId INT FOREIGN KEY REFERENCES tbl_Countries(Id),
+        MapId INT FOREIGN KEY REFERENCES tbl_Maps(Id),
         Caption varchar(20) NOT NULL,
     )
 END
