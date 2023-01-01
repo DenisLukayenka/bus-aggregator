@@ -1,5 +1,4 @@
 <map xmlns="http://schemas.datacontract.org/2004/07/Web.Infrastructure.Models.MapInfo">
-  <id>1</id>
   <caption>belarus</caption>
   <description>Super</description>
   <paths>
@@ -10,7 +9,6 @@
   </paths>
   <cities>
     <city>
-      <id>1</id>
       <text>
         <caption>hrodna</caption>
         <align>right</align>
@@ -23,7 +21,6 @@
       </indicator>
     </city>
     <city>
-      <id>2</id>
       <text>
         <caption>brest</caption>
         <align>right</align>
@@ -36,7 +33,6 @@
       </indicator>
     </city>
     <city>
-      <id>3</id>
       <text>
         <caption>gomel</caption>
         <align>top</align>
@@ -49,7 +45,6 @@
       </indicator>
     </city>
     <city>
-      <id>4</id>
       <text>
         <caption>mogilev</caption>
         <align>bottom</align>
@@ -62,7 +57,6 @@
       </indicator>
     </city>
     <city>
-      <id>5</id>
       <text>
         <caption>vitebsk</caption>
         <align>bottom</align>
@@ -75,7 +69,6 @@
       </indicator>
     </city>
     <city>
-      <id>6</id>
       <text>
         <caption>minsk</caption>
         <align>bottom</align>

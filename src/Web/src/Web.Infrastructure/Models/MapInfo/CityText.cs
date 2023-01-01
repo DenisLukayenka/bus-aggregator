@@ -15,7 +15,7 @@ namespace Web.Infrastructure.Models.MapInfo
         public virtual Position? Position { get; set; }
 
         [XmlElement("align", IsNullable = true)]
-        public string? Aligh { get; set; }
+        public string? Align { get; set; }
 
         [XmlElement("size", IsNullable = true)]
         public int? Size { get; set; }

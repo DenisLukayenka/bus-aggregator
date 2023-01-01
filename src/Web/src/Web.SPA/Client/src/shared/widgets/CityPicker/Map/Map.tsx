@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './Map.css';
-import { MapData } from './Map.config';
 import { useSelectedCities } from '@shared/hooks/useSelectedCities';
-import { DEFAULT_INDICATOR_SIZE, DEFAULT_TEXT_SIZE, Indicator, Position, Text } from '@shared/infastructure/models/backend/Map';
+import { DEFAULT_INDICATOR_SIZE, DEFAULT_TEXT_SIZE, Indicator, MapInfo, Position, Text } from '@shared/infastructure/models/backend/Map';
+import { AppConfig } from '@shared/infastructure/config';
 
 type MapProps = {
     styles: {
@@ -14,6 +14,13 @@ type MapProps = {
 
 export const Map = ({ styles }: MapProps) => {
     const { selectedCities, setSelectedCity } = useSelectedCities();
+    const [mapInfo, setMapInfo ] = useState<MapInfo | undefined>();
+
+    useEffect(() => {
+        fetch(AppConfig.mapEndpoint.mapUrl)
+            .then(result => result.json())
+            .then(data => setMapInfo(data));
+    }, []);
 
     const onCityClick = (id: string) => {
         setSelectedCity(id);
@@ -58,13 +65,17 @@ export const Map = ({ styles }: MapProps) => {
         return text.size || DEFAULT_TEXT_SIZE;
     }
 
+    if (!mapInfo) {
+        return <div>Loading...</div>
+    }
+
     return (
         <svg height={styles.height} width={styles.width} viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-            {MapData.paths.map((v, i) => (
-                <path key={i} style={v.style as any} className='country-border' d={v.value}></path>
+            {mapInfo.paths.map((v, i) => (
+                <path key={i} style={v.style as any || {}} className='country-border' d={v.value}></path>
             ))}
 
-            {MapData.cities.map(v => (
+            {mapInfo.cities.map(v => (
                 <g id={v.text.caption} key={v.text.caption} className={getCityGroupClass(v.text.caption)} onClick={() => onCityClick(v.text.caption)}>
                     <ellipse
                         className={getIndicatorOverlayClass(v.text.caption)}

@@ -5,7 +5,7 @@ namespace Web.SPA.Controllers
     using Web.Infrastructure.Configuration;
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class MapController : ControllerBase
     {
         private readonly AppConfiguration _config;
@@ -15,14 +15,8 @@ namespace Web.SPA.Controllers
             this._config = config;
         }
 
-        [HttpGet("getvalue")]
-        public string GetValue2()
-        {
-            return "stupied value";
-        }
-
-        [HttpGet("getMapObject")]
-        public IActionResult GetMapObject()
+        [HttpGet("metadata")]
+        public IActionResult GetMapMetadata()
         {
             return Ok(this._config.MapInfo);
         }

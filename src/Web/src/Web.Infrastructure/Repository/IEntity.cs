@@ -1,4 +1,4 @@
-namespace Web.Infrastructure.Models.Repository;
+namespace Web.Infrastructure.Repository;
 
 public interface IEntity<TKey>
 {

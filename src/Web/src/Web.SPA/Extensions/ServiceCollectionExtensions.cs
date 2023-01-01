@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Web.Infrastructure.Configuration;
 using Web.Infrastructure.Exceptions;
 using Web.Infrastructure.Models.MapInfo;
-using Web.Infrastructure.Models.Repository;
+using Web.Infrastructure.Repository;
 using Web.SqlRepository.Repositories;
 
 namespace Web.SPA.Extensions;
@@ -18,14 +18,7 @@ public static class ServiceCollectionExtensions
 
     public static void AddRepositories(this IServiceCollection services)
     {
-        services.AddSingleton<IRepository<Map>, MapRepository>(provider =>
-        {
-            var config = provider.GetRequiredService<AppConfiguration>();
-            var repository = new MapRepository(config);
-            repository.Init();
-
-            return repository;
-        });
+        services.AddScoped<IRepository<Map>, MapRepository>();
     }
 
     public static void AddAppConfiguration(this IServiceCollection services, IWebHostEnvironment env)

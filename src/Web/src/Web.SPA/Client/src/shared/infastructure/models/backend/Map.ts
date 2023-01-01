@@ -26,7 +26,7 @@ export type Path = {
     style?: string;
 }
 
-export interface Map {
+export interface MapInfo {
     id: number;
     caption: string;
     description?: string;

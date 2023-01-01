@@ -1,14 +1,28 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Web.SPA.Extensions
 {
     using Web.Infrastructure.Configuration;
     using Web.Infrastructure.Exceptions;
+    using Web.Infrastructure.Models.MapInfo;
+    using Web.Infrastructure.Repository;
 
     public static class ApplicationBuilderExtensions
     {
+        public static void UseRepositories(this IApplicationBuilder app)
+        {
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var provider = scope.ServiceProvider;
+
+                var mapRepository = provider.GetRequiredService<IRepository<Map>>();
+                mapRepository.Init();
+            }
+        }
+
         public static void UseApplicationFiles(this IApplicationBuilder app, IWebHostEnvironment env)
         {
             SetupDefaultFiles(app);

@@ -5,7 +5,7 @@ namespace Web.Infrastructure.Models.MapInfo
     [XmlRoot("city")]
     public class City
     {
-        [XmlElement("id", IsNullable = false)]
+        [XmlIgnore]
         public int Id { get; set; }
 
         [XmlElement("indicator", IsNullable = false)]

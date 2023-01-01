@@ -5,7 +5,7 @@ namespace Web.Infrastructure.Models.MapInfo
     [XmlRoot(ElementName = "map", IsNullable = false)]
     public class Map
     {
-        [XmlElement("id", IsNullable = false)]
+        [XmlIgnore]
         public int Id { get; set; }
 
         [XmlElement("caption", IsNullable = false)]
@@ -16,10 +16,10 @@ namespace Web.Infrastructure.Models.MapInfo
 
         [XmlArray("paths", IsNullable = false)]
         [XmlArrayItem("path")]
-        public virtual MapPath[] Paths { get; set; }
+        public virtual List<MapPath> Paths { get; set; }
 
         [XmlArray("cities", IsNullable = false)]
         [XmlArrayItem("city")]
-        public virtual City[] Cities { get; set; }
+        public virtual List<City> Cities { get; set; }
     }
 }

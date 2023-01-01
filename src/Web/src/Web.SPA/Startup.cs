@@ -32,10 +32,12 @@ namespace Web.SPA
             services.AddControllers();
             services.AddAppConfiguration(CurrentEnvironment);
             services.AddRepositories();
+            services.AddCors();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseRepositories();
             app.UseResponseCompression();
 
             if (env.IsDevelopment())
@@ -48,6 +50,15 @@ namespace Web.SPA
             app.UseSpaStaticFiles();
 
             app.UseRouting();
+
+            if (env.IsDevelopment())
+            {
+                app.UseCors(configure =>
+                {
+                    configure.AllowAnyOrigin();
+                });
+            }
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapDefaultControllerRoute();

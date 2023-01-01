@@ -19,8 +19,6 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Scripts/2022-12-25-539-InitDbTables.sql" />
-    <EmbeddedResource Include="Scripts/2022-12-25-616-InsertMapProcedure.sql" />
-    <EmbeddedResource Include="Scripts/2022-12-29-1153-InsertCityProcedure.sql" />
   </ItemGroup>
 
 </Project>
